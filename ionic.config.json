@@ -1,0 +1,7 @@
+{
+  "name": "npk-hubees",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

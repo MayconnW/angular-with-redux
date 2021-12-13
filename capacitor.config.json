@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "npk-hubees",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

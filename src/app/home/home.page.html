@@ -1,0 +1,10 @@
+<app-menu></app-menu>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <p>Usuário {{(user | async) ? (user | async).name : 'deslogado'}}</p>
+    <p *ngIf="isLoading | async">Carregando</p>
+
+    <button (click)="onSignIn()">Login</button>
+  </div>
+</ion-content>
