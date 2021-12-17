@@ -1,24 +1,28 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { signInRequest, signInSuccess, signInFail } from './session.action';
-import { User } from '../../domain/session/user';
+import * as actions from './session.action';
+import { User } from 'src/app/domain/session/user';
 
-export type SessionState = { user: User; loading: boolean };
+export enum SignStatus {
+  prestine,
+  authenticated,
+  unauthenticated,
+}
+
+export type SessionState = { signStatus: SignStatus };
 
 export const initialState: Readonly<SessionState> = {
-  user: undefined,
-  loading: false,
+  signStatus: SignStatus.prestine,
 };
 
 export const sessionReducer = createReducer(
   initialState,
   on(
-    signInRequest,
-    (state, { email, password }): SessionState => ({ ...state, loading: true })
+    actions.authenticated,
+    (): SessionState => ({ signStatus: SignStatus.authenticated })
   ),
   on(
-    signInSuccess,
-    (state, { user }): SessionState => ({ loading: false, user })
-  ),
-  on(signInFail, (state): SessionState => ({ loading: false, user: undefined }))
+    actions.unauthenticated,
+    (): SessionState => ({ signStatus: SignStatus.unauthenticated })
+  )
 );

@@ -1,15 +1,7 @@
-import { createAction, props } from '@ngrx/store';
-import { User } from 'src/app/domain/session/user';
+import { createAction } from '@ngrx/store';
 
-//export const signIn = createAction('[Counter Component] Increment');
-export const signInRequest = createAction(
-  '[Session] SignInRequest',
-  props<{ email: string; password: string }>()
-);
+export const authCheckRequested = createAction('[Session] authCheckRequested');
 
-export const signInSuccess = createAction(
-  '[Session] SignInSuccess',
-  props<{ user: User }>()
-);
+export const authenticated = createAction('[Session] authenticated');
 
-export const signInFail = createAction('[Session] SignInFail');
+export const unauthenticated = createAction('[Session] unauthenticated');

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectGetUser } from 'src/app/application/session/session.selectors';
+//import { selectGetUser } from 'src/app/application/session/session.selectors';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +8,7 @@ import { selectGetUser } from 'src/app/application/session/session.selectors';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  user = this.store.select(selectGetUser);
+  user = 'Test'; //this.store.select(selectGetUser);
 
   constructor(private store: Store) {}
 

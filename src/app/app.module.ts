@@ -6,12 +6,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
-import { sessionReducer } from './application/session/session.reducer';
-import { SessionEffects } from './application/session/session.effects';
-import { AppState } from './application/app.state';
+import { storeModule, effectsModule } from './application/app.state';
+
+import { providers } from 'src/app/infrastructure/providers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,10 +18,13 @@ import { AppState } from './application/app.state';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    StoreModule.forRoot<AppState>({ session: sessionReducer }),
-    EffectsModule.forRoot([SessionEffects]),
+    storeModule,
+    effectsModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ...providers,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

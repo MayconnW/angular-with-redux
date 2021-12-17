@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from 'src/app/presentation/app-bar/menu.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
