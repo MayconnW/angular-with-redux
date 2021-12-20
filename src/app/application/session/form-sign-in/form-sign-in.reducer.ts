@@ -1,13 +1,14 @@
-import { createReducer, on, State } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import {
   emailChanged,
   passwordChanged,
   formSubmittingStatus,
   signInSubmitResponse,
+  signInWithEmailAndPasswordPressed,
 } from './form-sign-in.action';
 import { EmailAddress, Password } from 'src/app/domain/session/value-objects';
-import { Maybe } from 'purify-ts/Maybe';
+import { Maybe, Nothing } from 'purify-ts/Maybe';
 import { Either } from 'purify-ts/Either';
 import { AuthFailure } from 'src/app/domain/session/failure';
 
@@ -20,29 +21,36 @@ export type FormSignInState = {
 };
 
 export const initialState: Readonly<FormSignInState> = {
-  emailAddress: new EmailAddress('m@m.m'),
+  emailAddress: new EmailAddress('masdasd@asdasd.masd'),
   password: new Password('12345678'),
   isSubmitting: false,
   showErrorMessages: false,
-  authFailureSuccessOption: null,
+  authFailureSuccessOption: Nothing,
 };
 
 export const formSignInReducer = createReducer(
   initialState,
-  on(
-    emailChanged,
-    (state, { email }): FormSignInState => ({
+  on(emailChanged, (state, { email }): FormSignInState => {
+    return {
       ...state,
       emailAddress: new EmailAddress(email),
-      authFailureSuccessOption: null,
-    })
-  ),
+      authFailureSuccessOption: Nothing,
+    };
+  }),
   on(
     passwordChanged,
     (state, { password }): FormSignInState => ({
       ...state,
       password: new Password(password),
-      authFailureSuccessOption: null,
+      authFailureSuccessOption: Nothing,
+    })
+  ),
+  on(
+    signInWithEmailAndPasswordPressed,
+    (state): FormSignInState => ({
+      ...state,
+      showErrorMessages: true,
+      isSubmitting: true,
     })
   ),
   on(
@@ -50,7 +58,7 @@ export const formSignInReducer = createReducer(
     (state, { isSubmitting }): FormSignInState => ({
       ...state,
       isSubmitting,
-      authFailureSuccessOption: null,
+      authFailureSuccessOption: Nothing,
     })
   ),
   on(

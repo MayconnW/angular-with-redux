@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
 import * as actions from './session.action';
-import { User } from 'src/app/domain/session/user';
 
 export enum SignStatus {
   prestine,

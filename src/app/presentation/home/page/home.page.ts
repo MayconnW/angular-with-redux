@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Maybe, Nothing } from 'purify-ts/Maybe';
 import { Observable, of, Subscription } from 'rxjs';
-import { signInWithEmailAndPasswordPressed } from 'src/app/application/session/form-sign-in/form-sign-in.action';
 import { authCheckRequested } from 'src/app/application/session/session.action';
 import { selectIsSignedIn } from 'src/app/application/session/session.selectors';
 import { IAuth } from 'src/app/domain/session/i-auth';

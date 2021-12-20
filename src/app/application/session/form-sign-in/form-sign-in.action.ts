@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { Either } from 'purify-ts/Either';
 import { Maybe } from 'purify-ts/Maybe';
 import { AuthFailure } from 'src/app/domain/session/failure';
-import { User } from 'src/app/domain/session/user';
 
 export const emailChanged = createAction(
   '[FormSignIn] emailChanged',

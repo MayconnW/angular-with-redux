@@ -46,7 +46,7 @@ export class Auth implements IAuth {
     password: Password;
   }): Promise<Either<AuthFailure, void>> {
     await sleep(2000);
-    if (props.password.getOrCrash() !== '12345678') {
+    if (props.password.getOrCrash() !== '12345678A') {
       return Left(AuthFailure.invalidEmailAndPasswordCombination());
     }
 

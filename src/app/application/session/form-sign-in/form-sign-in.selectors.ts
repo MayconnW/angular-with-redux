@@ -2,7 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { FormSignInState } from './form-sign-in.reducer';
 
 const selectFormSignIn =
-  createFeatureSelector<Readonly<FormSignInState>>('form-sign-in');
+  createFeatureSelector<Readonly<FormSignInState>>('formSignIn');
 
 export const selectEmailAddress = createSelector(
   selectFormSignIn,
@@ -14,25 +14,17 @@ export const selectPassword = createSelector(
   (formSignIn) => formSignIn.password
 );
 
-// export const selectIsLoading2 = createSelector(() => true);
+export const selectShowErrorMessages = createSelector(
+  selectFormSignIn,
+  (formSignIn) => formSignIn.showErrorMessages
+);
 
-// export const selectIsLoading = createSelector(
-//   selectSession,
-//   (session) => session.loading
-// );
+export const selectIsSubmitting = createSelector(
+  selectFormSignIn,
+  (formSignIn) => formSignIn.isSubmitting
+);
 
-// export const selectGetProfile = createSelector(
-//   selectSession,
-//   selectIsSignedIn,
-//   (sessions, isSignedIn) => (isSignedIn ? sessions.user : undefined)
-// );
-
-// export const selectGetUserName = createSelector(
-//   selectGetProfile,
-//   (user) => user?.name || ''
-// );
-
-// export const selectGetUser = createSelector(
-//   selectSession,
-//   (sessions) => sessions.user
-// );
+export const selectAuthFailureSuccessOption = createSelector(
+  selectFormSignIn,
+  (formSignIn) => formSignIn.authFailureSuccessOption
+);

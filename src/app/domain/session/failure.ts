@@ -20,76 +20,105 @@ export enum AuthFailureTypes {
   invalidEmailAndPasswordCombination,
 }
 
-export class EmailFailure extends Failure<EmailFailureTypes> {
-  private constructor(errorMessage: string, errorType: EmailFailureTypes) {
-    super(errorMessage, errorType);
+export class EmailFailure extends Failure<EmailFailureTypes, string> {
+  private constructor(
+    errorMessage: string,
+    errorType: EmailFailureTypes,
+    failedValue: string
+  ) {
+    super(errorMessage, errorType, failedValue);
   }
 
-  public static invalidEmail(): Failure<EmailFailureTypes> {
-    return new EmailFailure('Email inválido', EmailFailureTypes.invalidEmail);
+  public static invalidEmail(failedValue: string) {
+    return new EmailFailure(
+      'Email inválido',
+      EmailFailureTypes.invalidEmail,
+      failedValue
+    );
   }
 }
 
-export class PasswordFailure extends Failure<PasswordFailureTypes> {
-  private constructor(errorMessage: string, errorType: PasswordFailureTypes) {
-    super(errorMessage, errorType);
+export class PasswordFailure extends Failure<PasswordFailureTypes, string> {
+  private constructor(
+    errorMessage: string,
+    errorType: PasswordFailureTypes,
+    failedValue: string
+  ) {
+    super(errorMessage, errorType, failedValue);
   }
 
-  public static passwordToShort(): Failure<PasswordFailureTypes> {
+  public static passwordToShort(failedValue: string) {
     return new PasswordFailure(
       'Password precisa conter no mínimo 6 caracteres',
-      PasswordFailureTypes.passwordToShort
+      PasswordFailureTypes.passwordToShort,
+      failedValue
     );
   }
 
-  public static notContainSpecialCharacter(): Failure<PasswordFailureTypes> {
+  public static passwordShouldContainAtLeastOneUpperCaseChar(
+    failedValue: string
+  ) {
+    return new PasswordFailure(
+      'Password precisa conter no mínimo 1 caractere maiúsculo',
+      PasswordFailureTypes.passwordToShort,
+      failedValue
+    );
+  }
+
+  public static notContainSpecialCharacter(failedValue: string) {
     return new PasswordFailure(
       'Password precisa conter no mínimo um caractere especial',
-      PasswordFailureTypes.notContainSpecialCharacter
+      PasswordFailureTypes.notContainSpecialCharacter,
+      failedValue
     );
   }
 }
 
-export class CpfFailure extends Failure<CpfFailureTypes> {
-  private constructor(errorMessage: string, errorType: CpfFailureTypes) {
-    super(errorMessage, errorType);
+export class CpfFailure extends Failure<CpfFailureTypes, string> {
+  private constructor(
+    errorMessage: string,
+    errorType: CpfFailureTypes,
+    failedValue: string
+  ) {
+    super(errorMessage, errorType, failedValue);
   }
 
-  public static invalidCpf(): Failure<CpfFailureTypes> {
+  public static invalidCpf(failedValue: string) {
     return new CpfFailure(
       'Cpf informado não é válido',
-      CpfFailureTypes.invalidCpf
+      CpfFailureTypes.invalidCpf,
+      failedValue
     );
   }
 }
 
-export class AuthFailure extends Failure<AuthFailureTypes> {
+export class AuthFailure extends Failure<AuthFailureTypes, void> {
   private constructor(errorMessage: string, errorType: AuthFailureTypes) {
     super(errorMessage, errorType);
   }
 
-  public static cancelledByUser(): Failure<AuthFailureTypes> {
+  public static cancelledByUser() {
     return new AuthFailure(
       'Cancelado pelo usuário',
       AuthFailureTypes.cancelledByUser
     );
   }
 
-  public static serverError(): Failure<AuthFailureTypes> {
+  public static serverError() {
     return new AuthFailure(
       'Erro ao comunicar com o servidor',
       AuthFailureTypes.serverError
     );
   }
 
-  public static emailAlreadyInUse(): Failure<AuthFailureTypes> {
+  public static emailAlreadyInUse() {
     return new AuthFailure(
       'Este email já está sendo utilizado em nossa base',
       AuthFailureTypes.emailAlreadyInUse
     );
   }
 
-  public static invalidEmailAndPasswordCombination(): Failure<AuthFailureTypes> {
+  public static invalidEmailAndPasswordCombination() {
     return new AuthFailure(
       'Email ou senha inválidos',
       AuthFailureTypes.invalidEmailAndPasswordCombination
