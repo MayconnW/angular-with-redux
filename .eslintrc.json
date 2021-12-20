@@ -3,6 +3,7 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
+  "plugins": ["unused-imports"],
   "overrides": [
     {
       "files": [
@@ -18,7 +19,8 @@
       "extends": [
         "plugin:@angular-eslint/ng-cli-compat",
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "@angular-eslint/component-class-suffix": [
@@ -45,7 +47,12 @@
             "prefix": "app",
             "style": "camelCase"
           }
-        ]
+        ],
+        "unused-imports/no-unused-imports": "warn",
+        "unused-imports/no-unused-vars": ["warn", { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }],
+        "no-console": [ "warn", { "allow": [""] } ],
+        "arrow-body-style": "off",
+        "@typescript-eslint/no-empty-function": ["error", {"allow": ["constructors"]}]
       }
     },
     {
@@ -56,14 +63,6 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
-    },
-    {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:ngrx/recommended"
-      ]
     }
   ]
 }

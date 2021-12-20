@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div>
+      <p>Login</p>
+      <b>Email</b>
+      <input
+        type="text"
+        [ngModel]="(email$ | async)?.getValueOrFailedValue()"
+        (ngModelChange)="onEmailChange($event)"
+      />
+      <span *ngIf="(showErrorMessages$ | async) && !(email$ | async).isValid()"
+        >{{ (email$ | async).getErrorMessage() }}</span
+      >
+      <b>Password</b>
+      <input
+        type="text"
+        [ngModel]="(password$ | async)?.getValueOrFailedValue()"
+        (ngModelChange)="onPasswordChange($event)"
+      />
+      <span
+        *ngIf="(showErrorMessages$ | async) && !(password$ | async).isValid()"
+        >{{ (password$ | async).getErrorMessage() }}</span
+      >
+      <button (click)="onLoginClick()" type="button">
+        {{ (isSubmitting$ | async) ? 'Caregando...' : 'Login' }}
+      </button>
+      <h3 *ngIf="(formError$ | async)">{{ (formError$ | async) }}</h3>
+    </div>
+  </div>
+</ion-content>

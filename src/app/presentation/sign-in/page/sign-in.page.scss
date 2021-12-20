@@ -1,0 +1,37 @@
+#container {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+    align-items: center;
+
+    b {
+      align-self: flex-start;
+      font-size: 12px;
+      padding-top: 10px;
+    }
+
+    span {
+      align-self: flex-start;
+      font-size: 10px;
+      color: red;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      height: 40px;
+      width: 160px;
+      background-color: blue;
+      color: #fff;
+      margin-top: 12px;
+    }
+  }
+}

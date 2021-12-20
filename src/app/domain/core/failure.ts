@@ -1,15 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Either } from 'purify-ts/Either';
 
-export abstract class Failure<T> {
+/*
+  T represents the type of the Error
+  R represents the type of the failed value passed
+*/
+export abstract class Failure<T, R> {
   private _errorMessage: string;
 
   private _type: T;
+  private _failedValue: R;
 
-  constructor(errorMessage: string, type: T) {
+  constructor(errorMessage: string, type: T, failedValue: R) {
     this._errorMessage = errorMessage;
     this._type = type;
+    this._failedValue = failedValue;
   }
 
   get errorMessage(): string {
@@ -18,6 +23,10 @@ export abstract class Failure<T> {
 
   get type(): T {
     return this._type;
+  }
+
+  get failedValue(): R {
+    return this._failedValue;
   }
 
   toString(): string {

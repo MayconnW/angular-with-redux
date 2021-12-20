@@ -11,7 +11,6 @@ import {
 @Injectable()
 export class SessionEffects {
   authCheckRequested$ = createEffect(() => {
-    console.log('Remover depois de arrumar o eslint');
     return this.actions$.pipe(
       ofType(authCheckRequested),
       switchMap(async () => {

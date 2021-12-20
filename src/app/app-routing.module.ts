@@ -10,16 +10,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
     path: 'sign-in',
     loadChildren: () =>
       import('./presentation/sign-in/page/sign-in.module').then(
         (m) => m.SignInPageModule
       ),
+  },
+  {
+    path: '',
+    redirectTo: 'sign-in',
+    pathMatch: 'full',
   },
 ];
 
