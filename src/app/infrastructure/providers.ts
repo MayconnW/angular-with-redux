@@ -4,7 +4,7 @@ import { Auth as Auth } from 'src/app/infrastructure/real/session/auth-facade';
 
 const env = 'fake'; //process.env.NODE_ENV
 
-const authProvider = {
+export const authProvider = {
   provide: IAuth, // or string token 'AppService'
   useClass: env === 'fake' ? FakeAuth : Auth,
 };

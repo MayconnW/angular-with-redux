@@ -14,7 +14,6 @@ import { EmailAddress, Password } from 'src/app/domain/session/value-objects';
 import { Just } from 'purify-ts/Maybe';
 import { Left, Right } from 'purify-ts/Either';
 import { AuthFailure } from 'src/app/domain/session/failure';
-//import { Book } from '../book-list/books.model';
 
 describe('Form Sign In reducer', () => {
   describe('unknown action', () => {
