@@ -7,6 +7,7 @@ export enum EmailFailureTypes {
 export enum PasswordFailureTypes {
   passwordToShort,
   notContainSpecialCharacter,
+  passwordShouldContainAtLeastOneUpperCaseChar,
 }
 
 export enum CpfFailureTypes {
@@ -60,7 +61,7 @@ export class PasswordFailure extends Failure<PasswordFailureTypes, string> {
   ) {
     return new PasswordFailure(
       'Password precisa conter no mínimo 1 caractere maiúsculo',
-      PasswordFailureTypes.passwordToShort,
+      PasswordFailureTypes.passwordShouldContainAtLeastOneUpperCaseChar,
       failedValue
     );
   }
