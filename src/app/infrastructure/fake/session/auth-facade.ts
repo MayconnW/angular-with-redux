@@ -1,5 +1,5 @@
 import { Either, Left, Right } from 'purify-ts/Either';
-import { Just, Maybe } from 'purify-ts/Maybe';
+import { Just, Maybe, Nothing } from 'purify-ts/Maybe';
 import { AuthFailure } from 'src/app/domain/session/failure';
 import { IAuth } from 'src/app/domain/session/i-auth';
 import { User } from 'src/app/domain/session/user';
@@ -15,11 +15,11 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export class Auth implements IAuth {
   public async getSignedInUser(): Promise<Maybe<User>> {
-    await sleep(2000);
+    await sleep(100);
     if (user) {
       return Just(user);
     }
-    return Just({ id: '1', name: 'Teste' });
+    return Nothing;
   }
 
   public async registerWithEmailAndPassword(props: {
@@ -28,7 +28,7 @@ export class Auth implements IAuth {
     cpf: Cpf;
     password: Password;
   }): Promise<Either<AuthFailure, void>> {
-    await sleep(2000);
+    await sleep(100);
     const { cpf } = props;
     if (cpf.getOrCrash() === '12312312312') {
       return Left(AuthFailure.serverError());
@@ -45,7 +45,7 @@ export class Auth implements IAuth {
     emailAddress: EmailAddress;
     password: Password;
   }): Promise<Either<AuthFailure, void>> {
-    await sleep(2000);
+    await sleep(100);
     if (props.password.getOrCrash() !== '12345678A') {
       return Left(AuthFailure.invalidEmailAndPasswordCombination());
     }
@@ -63,7 +63,7 @@ export class Auth implements IAuth {
       id: '123',
       name: 'Google',
     };
-    await sleep(2000);
+    await sleep(100);
 
     return Right(null);
   }
@@ -77,7 +77,7 @@ export class Auth implements IAuth {
       id: '123',
       name: props.emailAddress.getOrCrash(),
     };
-    await sleep(2000);
+    await sleep(100);
     return Right(null);
   }
 
